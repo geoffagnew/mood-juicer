@@ -36,12 +36,6 @@ $(function() {
   		return currentVid;
 	}
 
- 	// pick a video from the array after ensuring no two videos will be shown consecutively
- 	function pickVideo(pos) {
-		var videoSelect = videos[pos];
-		return videoSelect;
- 	}
-
  	// store the value of previous number in the previousVid variable
  	function storePrevNumber(val) {
  		previousVid = val;
