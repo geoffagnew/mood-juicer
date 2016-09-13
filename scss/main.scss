@@ -1,0 +1,65 @@
+@import 'https://fonts.googleapis.com/css?family=Karla:400,700';
+
+/* ----------------------------------- General styles -- */
+body {
+	font-family: 'Karla', 'helvetica', arial, sans-serif;
+	background:#f7f7f7;
+}
+
+/* ----------------------------------- Variables -- */
+$light-grey:silver;
+
+/* ----------------------------------- Layout -- */
+.main-wrap {
+	width:98%;
+	margin:5% auto 0;
+	/*border:1px solid $light-grey;
+	background:white;
+	padding:0 0 50px;*/
+	h1 {
+		text-align:center;
+		font-size:60px;
+		font-weight:700;
+		letter-spacing:-1px;
+		margin-bottom:15px;
+	}
+	a#boost-btn {
+		width:150px;
+		background:red;
+		display:block;
+		padding:15px 20px;
+		text-align:center;
+		border-radius:3px;
+		color:white;
+		text-decoration:none;
+		margin:0 auto;
+	}
+	#video-output {
+		width:100%;
+		position:relative;
+		top:20px;
+		padding-bottom: 35%; /* 16:9 */
+		padding-top: 25px;
+		height: 0;
+		overflow:hidden;
+		box-shadow:1px 1px 10px rgba(0, 0, 0, 0.5);
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+@media only screen and (min-width: 480px) {
+	.main-wrap {
+		width:80%;
+		#video-output {
+			width:60%;
+			margin:25px auto 0;
+		}
+	}
+
+}
