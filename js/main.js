@@ -1,8 +1,8 @@
 $(function() {
 
-	var testGroup = ['blue', 'green', 'yellow'];
+	// var testGroup = ['blue', 'green', 'yellow'];
+	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo'];
 	var previousVid = '';
-	// var currentVid = '';
 
 	$('#boost-btn').on('click', function(e) {
 		e.preventDefault();
@@ -11,9 +11,10 @@ $(function() {
 		// get the current number selected
 		var currentVid = randomNumber();
 		// call function to compare values
-		var printVid = numberComparison(currentVid, previousVid);
+		var vettedVid = numberComparison(currentVid, previousVid);
+
 		// print the video to the page
-		$('#test-block').html('This is the current number selected: ' + printVid);
+		$('#test-block').html('This is the current number selected: ' + vettedVid);
 		// finally store the current number for future use in storePrevNumber
 		storePrevNumber(currentVid);
 	});
@@ -27,14 +28,21 @@ $(function() {
 		 	$('#test-block-alert').html('Oops we have a duplicate. The previous number was: ' + previous + ' and the original randomized number is ' + randomized);
 		 	randomized = randomNumber();
 		}
-		return randomized;
+		//pickVideo(randomized);
+		return pickVideo(randomized);
 	}
 
 	// find a random number
 	function randomNumber() {
- 		var vidNumber = testGroup.length;
+ 		var vidNumber = videos.length;
  		var number = Math.floor(Math.random() * vidNumber);
  		return number;
+ 	}
+
+ 	// pick a video from the array after ensuring no two videos will be shown consecutively
+ 	function pickVideo(pos) {
+		var videoSelect = videos[pos];
+		return videoSelect;
  	}
 
  	// store the value of previous number in the previousVid variable
