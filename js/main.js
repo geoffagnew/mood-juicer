@@ -11,6 +11,7 @@ $(function() {
 		// console.log('This is the current video: ' + currentVideo);
 		// previousVideo = pickVideo();
 		$('#test-block').html(src);
+		// 
  	});
 
 
