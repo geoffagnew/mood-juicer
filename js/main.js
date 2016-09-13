@@ -11,6 +11,7 @@ $(function() {
 		$('#test-block-previous').html('This is the previous number: ' + previousVid);
 		// get the current number selected
 		var currentVid = randomNumber();
+
 		// call function to compare values
 		var vettedVid = numberComparison(currentVid, previousVid);
 
@@ -20,10 +21,10 @@ $(function() {
 		$('#test-block-current').html('This is the current number selected: ' + vettedVid[1]);
 
 		// for testing purposes, print the rounds to the page
-		rounds = 'Current url: ' + vettedVid[0] + '<br />' +
-					'Current number: ' + vettedVid[1] + '<br />' +
-					'Previous number: ' + previousVid;
-		console.log(rounds);
+		rounds += 'Current url: ' + vettedVid[0] + '<br />' +
+					'Previous number: ' + previousVid + '<br />' +
+					'Current number: ' + vettedVid[1] + '<br /><br />';
+		$('#rounds').html(rounds);
 		// -------------------------------------------------
 
 		// finally store the current number for future use in storePrevNumber
@@ -34,10 +35,15 @@ $(function() {
 	function numberComparison(current, previous) {
 		// create local variable for current randomized number
 		var randomized = current;
-		// var alertNote = '';
+		var alertNote = '';
 		// check if current value is equal to previous value
+		// (if current value is the same as previous value) 
+		//	if randomized === previous {
+			// (randomize number) 
+		// }
+
 		while (randomized === previous) {
-		 	// alertNote = $('#test-block-alert').html('Oops we have a duplicate. The previous number was: ' + previous + ' and the original randomized number is ' + randomized);
+		 	alertNote = $('#test-block-alert').html('Oops we have a duplicate. The previous number was: ' + previous + ' and the original randomized number is ' + randomized);
 		 	randomized = randomNumber();
 		}
 		var videoSelect = pickVideo(randomized);
