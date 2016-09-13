@@ -1,8 +1,9 @@
 $(function() {
 
 	// var testGroup = ['blue', 'green', 'yellow'];
-	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo'];
-	var previousVid = '';
+	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA=ONE', 'https://www.youtube.com/embed/-F5HwiGm7lg=TWO','https://www.youtube.com/embed/W6p2onuGlpo=THREE'];
+	var previousVid = 'Empty';
+	var rounds = '';
 
 	$('#boost-btn').on('click', function(e) {
 		e.preventDefault();
@@ -13,8 +14,18 @@ $(function() {
 		// call function to compare values
 		var vettedVid = numberComparison(currentVid, previousVid);
 
-		// print the video to the page
-		$('#test-block').html('This is the current number selected: ' + vettedVid);
+		// ------------------------------------------------
+		// for testing purposes print the video to the page
+		$('#test-block').html('This is the current url: ' + vettedVid[0]);
+		$('#test-block-current').html('This is the current number selected: ' + vettedVid[1]);
+
+		// for testing purposes, print the rounds to the page
+		rounds = 'Current url: ' + vettedVid[0] + '<br />' +
+					'Current number: ' + vettedVid[1] + '<br />' +
+					'Previous number: ' + previousVid;
+		console.log(rounds);
+		// -------------------------------------------------
+
 		// finally store the current number for future use in storePrevNumber
 		storePrevNumber(currentVid);
 	});
@@ -23,13 +34,16 @@ $(function() {
 	function numberComparison(current, previous) {
 		// create local variable for current randomized number
 		var randomized = current;
+		// var alertNote = '';
 		// check if current value is equal to previous value
 		while (randomized === previous) {
-		 	$('#test-block-alert').html('Oops we have a duplicate. The previous number was: ' + previous + ' and the original randomized number is ' + randomized);
+		 	// alertNote = $('#test-block-alert').html('Oops we have a duplicate. The previous number was: ' + previous + ' and the original randomized number is ' + randomized);
 		 	randomized = randomNumber();
 		}
-		//pickVideo(randomized);
-		return pickVideo(randomized);
+		var videoSelect = pickVideo(randomized);
+		var combined = [videoSelect,randomized];
+		return combined;
+		// return pickVideo(randomized);
 	}
 
 	// find a random number
