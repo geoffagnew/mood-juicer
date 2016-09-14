@@ -4,6 +4,21 @@
 body {
 	font-family: 'Karla', 'helvetica', arial, sans-serif;
 	background:#f7f7f7;
+	&.blue {
+		background:#3F51B5;
+	}
+	&.green {
+		background:green;
+	}
+	&.red {
+		background:red;
+	}
+	&.orange {
+		background:orange;
+	}
+	&.purple {
+		background:purple;
+	}
 }
 
 /* ----------------------------------- Variables -- */
@@ -22,6 +37,7 @@ $light-grey:silver;
 		font-weight:700;
 		letter-spacing:-1px;
 		margin-bottom:15px;
+		color:white;
 	}
 	a#boost-btn {
 		width:150px;
@@ -51,6 +67,10 @@ $light-grey:silver;
 			height: 100%;
 		}
 	}
+}
+
+.hide {
+	display:none;
 }
 
 @media only screen and (min-width: 480px) {
