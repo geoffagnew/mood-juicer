@@ -7,11 +7,18 @@ $(function() {
 	var previousVid = '';
 	var currentVid = '';
 	var $videoWrap = $('#video-output');
+	var $btn = $('#boost-btn');
 
-	$('#boost-btn').on('click', function(e) {
+	$btn.on('click', function(e) {
 		e.preventDefault();
+		// change text in button after first click
+		if ($btn.hasClass('first')) {
+			$btn.removeClass('first');
+			$btn.text('Another video please');
+		} 
 		// set the background colour
 		setColour();
+		// show the video container on click
 		if ($videoWrap.hasClass('hide')) {
 			$videoWrap.removeClass('hide');
 		}
