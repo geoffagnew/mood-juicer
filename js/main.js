@@ -1,6 +1,6 @@
 $(function() {
 
-	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA?autoplay=1', 'https://www.youtube.com/embed/-F5HwiGm7lg?autoplay=1','https://www.youtube.com/embed/W6p2onuGlpo?autoplay=1'];
+	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo', 'https://www.youtube.com/embed/U5aqQvEeMro', 'https://www.youtube.com/embed/dzt7oCFN3ek'];
 	var colours = ['red', 'orange', 'green', 'purple'];
 	var vidNumber = videos.length;
 	var colourNumber = colours.length;
@@ -16,6 +16,10 @@ $(function() {
 			$btn.removeClass('first');
 			$btn.text('Another video please');
 		} 
+		// change vertical position of div after first video is launched
+		if ($('#text-wrap').hasClass('launch')) {
+			$('#text-wrap').removeClass('launch');
+		}
 		// set the background colour
 		setColour();
 		// show the video container on click
@@ -26,6 +30,7 @@ $(function() {
 		var vettedNum = compareNumbers(previousVid);
 		// get the video url from array
 		var src = videos[vettedNum];
+		src += '?autoplay=1';
 		// add the video url to the iframe
 		$('#video-output iframe').attr('src', src);
 
