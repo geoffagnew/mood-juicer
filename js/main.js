@@ -93,24 +93,6 @@ $(function() {
 		return [videoSrc, vidNumber];
 	}
 
-	
-	function addRemoveVids() {
-		// move all the items in videosWatched array back to videos array
-		var vidNumber = videos.length;
-		// set the random number to pull from the array
-		var currentVid2 = randomize(vidNumber);
-		// get the video url based on that number
-		var videoSrc = videos[currentVid2];
-		// remove that item from the videos array
-		videos.splice(currentVid2, 1);
-		// push that url into the videosWatched array
-		videosWatched.push(videoSrc);
-		// get the new number of videos in array
-		vidNumber = videos.length;
-		var collected = [videoSrc, vidNumber];
-		return collected; 
-	}
-
 	// function compareNumbers(previous) {
  //  		currentVid = randomize(vidNumber);
  //  		while (previous === currentVid) {
