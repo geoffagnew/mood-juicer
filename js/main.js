@@ -57,11 +57,23 @@ $(function() {
 	}
 
 	function getVideo() {
-		if (videos.length < 1) {
+		if (videos.length <= 0) {
 			// move all the items in videosWatched array back to videos array
-			// videos += videosWatched; 
+			// videos += videosWatched;
+			var vidNumber = videos.length;
+			// set the random number to pull from the array
+			var currentVid2 = randomize(vidNumber);
+			// get the video url based on that number
+			var videoSrc = videos[currentVid2];
+			// remove that item from the videos array
+			videos.splice(currentVid2, 1);
+			// push that url into the videosWatched array
+			videosWatched.push(videoSrc);
+			// get the new number of videos in array
+			vidNumber = videos.length; 
 			videos = videosWatched.slice();
-			// videosWatched = [];
+			videos.pop();
+			videosWatched = [];
 		} else {
 			var vidNumber = videos.length;
 			// set the random number to pull from the array
