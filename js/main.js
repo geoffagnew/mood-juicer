@@ -1,14 +1,11 @@
 $(function() {
 
-	// var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo', 'https://www.youtube.com/embed/U5aqQvEeMro', 'https://www.youtube.com/embed/dzt7oCFN3ek'];
-	// var videosWatched = [];
-	var videos = ['one', 'two', 'three', 'four', 'five'];
+	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo', 'https://www.youtube.com/embed/U5aqQvEeMro', 'https://www.youtube.com/embed/dzt7oCFN3ek'];
 	var videosWatched = [];
 	var colours = ['red', 'orange', 'green', 'purple'];
-	// var vidNumber = videos.length;
-	var colourNumber = colours.length;
-	// var previousVid = '';
-	// var currentVid = '';
+	var coloursLength = colours.length;
+	var currentColour = '';
+	var previousColour = '';
 	var $videoWrap = $('#video-output');
 	var $btn = $('#boost-btn');
 
@@ -24,59 +21,53 @@ $(function() {
 			$('#text-wrap').removeClass('launch');
 		}
 		// set the background colour
-		setColour();
+		currentColour = compareColours(previousColour, coloursLength);
+		applyColour(currentColour);
+
 		// show the video container on click
 		if ($videoWrap.hasClass('hide')) {
 			$videoWrap.removeClass('hide');
 		}
-		// call function to compare values
-		// var vettedNum = compareNumbers(previousVid);
-		// get the video url from array
-		// var src = videos[vettedNum];
 		
 		var videoData = getVideo();
+		// get the video url from array
 		var src = videoData[0];
-		console.log('NEW GROUP --' + '\n' + 'Original videos array: ' + videos);
 
-		console.log('Second videos array: ' + videosWatched);
+		// console.log('NEW GROUP --' + '\n' + 'Original videos array: ' + videos);
 
-		console.log('Number of videos left in original array: ' + '------------ ' + videoData[1]);
+		// console.log('Second videos array: ' + videosWatched);
 
-		console.log('This is the selected url for display: ' + '------------ ' + videoData[0]);
+		// console.log('Number of videos left in original array: ' + '------------ ' + videoData[1]);
 
-		// src += '?autoplay=1';
+		// console.log('This is the selected url for display: ' + '------------ ' + videoData[0]);
+
+		// add autoplay parameter to end of video url
+		src += '?autoplay=1';
 		// add the video url to the iframe
-		// $('#video-output iframe').attr('src', src);
+		$('#video-output iframe').attr('src', src);
 
-		// finally store the current number for future use in storePrevNumber
-		// storePrevNumber(currentVid);
+		// finally store the previous colour index number for future use in storePrevNumber
+		storePrevColour(currentColour);
 	});
 
-	// randomize function for selecting random number from arrays
-	function randomize(val) {
-		var num = Math.floor(Math.random() * val);
-		return num;
-	}
-
+	// move the video urls between the two arrays
 	function getVideo() {
 		if (videos.length <= 1) {
+			// get the current number of items in videos array
 			var vidNumber = videos.length;
-			// set the random number to pull from the array
-			// var currentVid2 = randomize(vidNumber);
-			// get the video url based on that number
+			// get the final video url from the videos array
 			var videoSrc = videos[0];
-			// remove that item from the videos array
-			// videos.splice(currentVid2, 1);
 			// get the new number of videos in array
 			vidNumber = videos.length; 
-
+			// move all items from videosWatched array to videos array
 			videos = videosWatched.slice();
-			//videos.pop();
+			// empty the videosWatched array
 			videosWatched = [];
-			// push that url into the videosWatched array
+			// push the final video url from videos array to the videosWatched array
 			videosWatched.push(videoSrc);
 
 		} else {
+			// get the current number of items in videos array
 			var vidNumber = videos.length;
 			// set the random number to pull from the array
 			var currentVid2 = randomize(vidNumber);
@@ -101,24 +92,38 @@ $(function() {
  //  		return currentVid;
 	// }
 
- 	// store the value of previous number in the previousVid variable
- 	// function storePrevNumber(val) {
- 	// 	previousVid = val;
- 	// }
+	// randomize function for selecting random number from arrays
+	function randomize(val) {
+		var num = Math.floor(Math.random() * val);
+		return num;
+	}
 
- 	// select and set new background colour
- 	function setColour() {
- 		var selectColour = randomize(colourNumber);
- 		var src = colours[selectColour];
+	// evaluate previous colour to current colour to make sure no back to back duplicates occur
+	function compareColours(previous, indexTotal) {
+  		var currentItem = randomize(indexTotal);
+  		while (previous === currentItem) {
+   			currentItem = randomize(indexTotal);
+  		}
+  		var src = colours[currentItem];
+  		return src;
+	}
+
+ 	// apply the selected colour to the page
+ 	function applyColour(colour) {
  		var $body = $('body');
- 		$body.toggleClass(src);
+ 		$body.toggleClass(colour);
  		var currentClass = $body.attr('class');
  		if ($body.hasClass(currentClass)) {
  			$body.removeClass(currentClass);
- 			$body.addClass(src);
+ 			$body.addClass(colour);
  		} else {
- 			$body.addClass(src);
+ 			$body.addClass(colour);
  		}
+ 	}
+
+ 	// store the value of previous number in the previousVid variable
+ 	function storePrevColour(val) {
+ 		previousColour = val;
  	}
 
 });
