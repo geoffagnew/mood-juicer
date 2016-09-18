@@ -11,6 +11,8 @@ $(function() {
 
 	$btn.on('click', function(e) {
 		e.preventDefault();
+		// console.log('This is the previous colour: ' + previousColour);
+
 		// change text in button after first click
 		if ($btn.hasClass('first')) {
 			$btn.removeClass('first');
@@ -22,7 +24,7 @@ $(function() {
 		}
 		// set the background colour
 		currentColour = compareColours(previousColour, coloursLength);
-		applyColour(currentColour);
+		applyColour(currentColour[1]);
 
 		// show the video container on click
 		if ($videoWrap.hasClass('hide')) {
@@ -46,8 +48,10 @@ $(function() {
 		// add the video url to the iframe
 		$('#video-output iframe').attr('src', src);
 
+		// console.log('This is the current colour: ' + currentColour[0]);
+
 		// finally store the previous colour index number for future use in storePrevNumber
-		storePrevColour(currentColour);
+		storePrevColour(currentColour[0]);
 	});
 
 	// move the video urls between the two arrays
@@ -101,11 +105,16 @@ $(function() {
 	// evaluate previous colour to current colour to make sure no back to back duplicates occur
 	function compareColours(previous, indexTotal) {
   		var currentItem = randomize(indexTotal);
+  		// while previous colour is the same index as the current colour, run the randomization function until we find two indexes that don't match
   		while (previous === currentItem) {
    			currentItem = randomize(indexTotal);
   		}
+  		// get the index position
+  		var colourPos = currentItem;
+  		// get the index value 
   		var src = colours[currentItem];
-  		return src;
+  		var posSrc = [colourPos, src];
+  		return posSrc;
 	}
 
  	// apply the selected colour to the page
