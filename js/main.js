@@ -45,11 +45,14 @@ $(function() {
 
 	// move the video urls between the two arrays
 	function getVideo() {
+		// get the current number of items in videos array
+		var vidNumber = videos.length;
+		var videoSrc = '';
+		var currentVid2 = '';
+
 		if (videos.length <= 1) {
-			// get the current number of items in videos array
-			var vidNumber = videos.length;
 			// get the final video url from the videos array
-			var videoSrc = videos[0];
+			videoSrc = videos[0];
 			// get the new number of videos in array
 			vidNumber = videos.length; 
 			// move all items from videosWatched array to videos array
@@ -60,12 +63,10 @@ $(function() {
 			videosWatched.push(videoSrc);
 
 		} else {
-			// get the current number of items in videos array
-			var vidNumber = videos.length;
 			// set the random number to pull from the array
-			var currentVid2 = randomize(vidNumber);
+			currentVid2 = randomize(vidNumber);
 			// get the video url based on that number
-			var videoSrc = videos[currentVid2];
+			videoSrc = videos[currentVid2];
 			// remove that item from the videos array
 			videos.splice(currentVid2, 1);
 			// push that url into the videosWatched array
