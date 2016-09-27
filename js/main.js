@@ -11,8 +11,7 @@ $(function() {
 
 	$btn.on('click', function(e) {
 		e.preventDefault();
-		// console.log('This is the previous colour: ' + previousColour);
-
+		
 		// change text in button after first click
 		if ($btn.hasClass('first')) {
 			$btn.removeClass('first');
@@ -35,20 +34,10 @@ $(function() {
 		// get the video url from array
 		var src = videoData[0];
 
-		// console.log('NEW GROUP --' + '\n' + 'Original videos array: ' + videos);
-
-		// console.log('Second videos array: ' + videosWatched);
-
-		// console.log('Number of videos left in original array: ' + '------------ ' + videoData[1]);
-
-		// console.log('This is the selected url for display: ' + '------------ ' + videoData[0]);
-
 		// add autoplay parameter to end of video url
 		src += '?autoplay=1';
 		// add the video url to the iframe
 		$('#video-output iframe').attr('src', src);
-
-		// console.log('This is the current colour: ' + currentColour[0]);
 
 		// finally store the previous colour index number for future use in storePrevNumber
 		storePrevColour(currentColour[0]);
