@@ -1,6 +1,6 @@
 $(function() {
 
-	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo', 'https://www.youtube.com/embed/U5aqQvEeMro', 'https://www.youtube.com/embed/dzt7oCFN3ek'];
+	var videos = ['https://www.youtube.com/embed/Yt6Ig18C8dA', 'https://www.youtube.com/embed/-F5HwiGm7lg','https://www.youtube.com/embed/W6p2onuGlpo', 'https://www.youtube.com/embed/U5aqQvEeMro', 'https://www.youtube.com/embed/dzt7oCFN3ek', 'https://www.youtube.com/embed/ZXnT84Eu-oA', 'https://www.youtube.com/embed/pw5ETGiiBRg'];
 	var videosWatched = [];
 	var colours = ['red', 'orange', 'green', 'purple'];
 	var coloursLength = colours.length;
