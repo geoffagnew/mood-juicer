@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   gutil = require('gulp-util'),
   gulpSass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
+  eslint = require('gulp-eslint'),
   concat = require('gulp-concat'),
   uglifyJs = require('gulp-uglify'),
   uglifyCss = require('gulp-uglifycss');
@@ -11,6 +12,14 @@ var jsSources = [
   'js/vendor/jquery-1.11.2.min.js',
   'js/main.js'
 ];
+
+// lintjs
+gulp.task('linter', function(){
+  return gulp.src(jsSources)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
 
 // concatenate and uglify js files
 gulp.task('js-concat-ug', function(){
@@ -34,6 +43,7 @@ gulp.task('sass-ug', function() {
 
 // watch task
 gulp.task('default', function() {
+  gulp.watch('js/main.js', ['linter']);
   gulp.watch('js/main.js', ['js-concat-ug']);
   gulp.watch('scss/*.scss', ['sass-ug']);
 });

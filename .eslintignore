@@ -1,0 +1,3 @@
+# ignore everything but main.js
+**/*.js
+!main.js
